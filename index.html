@@ -13,16 +13,20 @@
       var yourVlSpec = {
         $schema: 'https://vega.github.io/schema/vega-lite/v2.0.json',
         description: 'Testing website with bar graph',
-          "data": {
-    "url": "Happiness_data_2017.csv",
-    "format": {"type": "csv"}
-  },
+"data": {"url": "https://HarshithaRavindra29.github.io/Happiness_data_2017.csv"},
   "mark": "bar",
   "encoding": {
-    "x": {"field": "Family", "type": "quantitative"},
-    "y": {"aggregate": "count", "type": "quantitative"}
-  }
-      };
+    "x": {
+      "bin": {"maxbins": 200},
+      "field": "Family",
+      "type": "quantitative"
+      
+    },
+    "y": {
+      "aggregate": "count",
+      "type": "quantitative"
+    }
+  }      };
       vegaEmbed('#vis', yourVlSpec);
     </script>
   </body>

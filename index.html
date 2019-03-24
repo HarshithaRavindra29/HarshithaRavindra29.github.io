@@ -131,6 +131,35 @@
 	};
       vegaEmbed('#vis2', DystopiaHist);
     </script>
+	  
+	  
+ vegaEmbed('#vis4', Interactive2);
+ </script>
+	
+	  <p>?int2</p>	  
+    <div id="vis4"></div>
+
+    <script type="text/javascript">
+      var int2 = {
+  "data": {"url": "data/cars.json"},
+  "selection": {
+    "pts": {"type": "single"}
+  },
+  "mark": "rect",
+  "encoding": {
+    "y": {"field": "Origin", "type": "ordinal"},
+    "x": {"field": "Cylinders", "type": "ordinal"},
+    "color": {
+      "condition": {
+        "selection": "pts",
+        "aggregate": "count", "type": "quantitative"
+      },
+      "value": "grey"
+    }
+  }
+};
+      vegaEmbed('#vis4', int2);
+    </script>
 
 	  
   </body>

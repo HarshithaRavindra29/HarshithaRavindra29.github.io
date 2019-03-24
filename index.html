@@ -10,13 +10,7 @@
 <body>  
   <div id="vis"></div>
   <script>  
-    const spec = "scatter-brush-rule.vl.json"
-    var opts = {"actions": {export: false, source: false, editor: false}};
-  	vega.embed('#vis', spec, opts);
-  </script>
-</body>
-
-{
+    const spec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "description": "A scatterplot showing average miles per gallons for selection.",
   "data": {"url": "cars.json"},
@@ -50,3 +44,9 @@
     }
   ]
 }
+    var opts = {"actions": {export: false, source: false, editor: false}};
+  	vega.embed('#vis', spec, opts);
+  </script>
+</body>
+
+

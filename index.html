@@ -172,6 +172,51 @@
          };
          vegaEmbed('#vis4', int2);
       </script>
+      
+      <p>good one</p>
+      <div id="vis5"></div>
+      <script type="text/javascript">
+         var bubble = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "https://HarshithaRavindra29.github.io/Happiness_data_2017.csv"
+  },
+  "config": {
+    "invalidValues": null
+  },
+  "width": 600,
+  "height": 400,
+  "transform": [
+    
+    {"filter": {"field": "Happiness_Rank", "lte": 555}}
+  ],
+  "mark": {
+    "type": "circle",
+    "opacity": 0.8,
+    "stroke": "black",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "Economy_GDP_per_Capita_",
+      "type": "quantitative",
+      
+      "axis": {"labelAngle": 0}
+    },
+    "y": {"field": "Health_Life_Expectancy_", "type": "quantitative", "axis": {"title": "Health_Life_Expectancy_"}},
+    "tooltip": {"field": "Country", "type": "nominal"},
+    "size": {
+      "field": "Dystopia_Residual",
+      "type": "quantitative",
+      "legend": {"title": "Dystopia_Residual: The lower the better"},
+      "scale": {"range": [0, 700]}
+    },
+    "color": {"field": "Happiness_Rank", "type": "quantitative","scale": {"scheme": "magma"}}
+  }
+}
+;
+         vegaEmbed('#vis5', bubble);
+      </script>
    </body>
 </html>
 

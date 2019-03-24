@@ -1,97 +1,52 @@
 <!DOCTYPE html>
-<html>
-	<p>test</p>
-  <head>
-    <title>World Happiness Analysis</title>
-    <script src="https://cdn.jsdelivr.net/npm/vega@5.3.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc15"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@4.0.0-rc1"></script>
-  </head>
-  <body>
- 
-	  <p> gjjjap </p>
-	 	  
-    <div id="vis3"></div>
+<head>
+  <meta charset="utf-8">
+  <title>Scatter Average on Highlight</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/3.0.0-rc5/vega.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/2.0.0-beta.11/vega-lite.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/3.0.0-beta.19/vega-embed.js"></script>
+</head>
 
-    <script type="text/javascript">
-      var Interactive = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
-  "data": {"url": "data/movies.json"},
-  "spacing": 15,
-  "bounds": "flush",
-  "vconcat": [{
-    "mark": "bar",
-    "height": 60,
-    "encoding": {
-      "x": {
-        "bin": true,
-        "field": "IMDB_Rating",
-        "type": "quantitative",
-        "axis": null
-      },
-      "y": {
-        "aggregate": "count",
-        "type": "quantitative",
-        "scale": {
-          "domain": [0,1000]
-        },
-        "title": ""
-      }
-    }
-  }, {
-    "spacing": 15,
-    "bounds": "flush",
-    "hconcat": [{
-      "mark": "rect",
+<body>  
+  <div id="vis"></div>
+  <script>  
+    const spec = "scatter-brush-rule.vl.json"
+    var opts = {"actions": {export: false, source: false, editor: false}};
+  	vega.embed('#vis', spec, opts);
+  </script>
+</body>
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "description": "A scatterplot showing average miles per gallons for selection.",
+  "data": {"url": "cars.json"},
+  "width": 400,
+  "height": 400,
+  "layer": [
+    {
+      "selection": {"pts": {"type": "interval"}},
+      "mark": "circle",
       "encoding": {
-        "x": {
-          "bin": true,
-          "field": "IMDB_Rating",
-          "type": "quantitative"
-        },
-        "y": {
-          "bin": true,
-          "field": "Rotten_Tomatoes_Rating",
-          "type": "quantitative"
-        },
+        "x": {"field": "Horsepower", "type": "Q"},
+        "y": {"field": "Miles_per_Gallon", "type": "Q"},
         "color": {
-          "aggregate": "count",
-          "type": "quantitative"
-        }
-      }
-    }, {
-      "mark": "bar",
-      "width": 60,
-      "encoding": {
-        "y": {
-          "bin": true,
-          "field": "Rotten_Tomatoes_Rating",
-          "type": "quantitative",
-          "axis": null
-        },
-        "x": {
-          "aggregate": "count",
-          "type": "quantitative",
-          "scale": {
-            "domain": [0,1000]
+          "condition": {
+            "selection": "pts",
+            "field": "Origin", 
+            "type": "nominal"
           },
-          "title": ""
+          "value": "grey"
         }
       }
-    }]
-  }],
-  "config": {
-    "view": {
-      "stroke": "transparent"
+    },
+    {
+      "transform": [{"filter": {"selection": "pts"}}],
+      "mark": "rule",
+      "encoding": {
+        "y": {"field": "Miles_per_Gallon", "type":"Q", "aggregate": "mean"},
+        "size": {"value": 3},
+        "color": {"value": "red"}
+      }
     }
-  }
+  ]
 }
-;
- vegaEmbed('#vis3', Interactive);
- </script>
-	
-	  <p>?ghcvhb,n</p>	  
-
-	  
-  </body>
-</html>

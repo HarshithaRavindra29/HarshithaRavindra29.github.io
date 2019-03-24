@@ -16,65 +16,77 @@
     <script type="text/javascript">
       var Interactive = {
   "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
-  "description": "Drag a rectangular brush to show (first 20) selected points in a table.",
-  "data": {"url": "https://HarshithaRavindra29.github.io/Happiness_data_2017.csv"},
-  "transform": [{
-    "window": [{"op": "row_number", "as": "row_number"}]
-  }],
-  "hconcat": [{
-    "selection": {
-      "brush": {
-        "type": "interval"
-      }
-    },
-    "mark": "point",
+  "data": {"url": "data/movies.json"},
+  "spacing": 15,
+  "bounds": "flush",
+  "vconcat": [{
+    "mark": "bar",
+    "height": 60,
     "encoding": {
-      "x": {"field": "Happiness_Score", "type": "quantitative"},
-      "y": {"field": "Dystopia_Residual", "type": "quantitative"},
-      "color": {
-        "condition": {"selection": "brush", "field": "Economy_GDP_per_Capita_", "type": "quantitative"},
-        "value": "grey"
+      "x": {
+        "bin": true,
+        "field": "IMDB_Rating",
+        "type": "quantitative",
+        "axis": null
+      },
+      "y": {
+        "aggregate": "count",
+        "type": "quantitative",
+        "scale": {
+          "domain": [0,1000]
+        },
+        "title": ""
       }
     }
   }, {
-    "transform": [
-      {"filter": {"selection": "brush"}},
-      {"window": [{"op": "rank", "as": "rank"}]},
-      {"filter": {"field": "rank", "lt": 10}}
-    ],
+    "spacing": 15,
+    "bounds": "flush",
     "hconcat": [{
-      "title": "GDP",
-      "mark": "text",
+      "mark": "rect",
       "encoding": {
-        "text": {"field": "Economy_GDP_per_Capita_", "type": "nominal"},
-        "y": {"field": "row_number", "type": "ordinal", "axis": null}
+        "x": {
+          "bin": true,
+          "field": "IMDB_Rating",
+          "type": "quantitative"
+        },
+        "y": {
+          "bin": true,
+          "field": "Rotten_Tomatoes_Rating",
+          "type": "quantitative"
+        },
+        "color": {
+          "aggregate": "count",
+          "type": "quantitative"
+        }
       }
     }, {
-      "title": "Country",
-      "mark": "text",
+      "mark": "bar",
+      "width": 60,
       "encoding": {
-        "text": {"field": "Country", "type": "nominal"},
-        "y": {"field": "row_number", "type": "ordinal", "axis": null}
-      }
-    }, {
-      "title": "Family",
-      "mark": "text",
-      "encoding": {
-        "text": {"field": "Family", "type": "nominal"},
-        "y": {"field": "row_number", "type": "ordinal", "axis": null}
+        "y": {
+          "bin": true,
+          "field": "Rotten_Tomatoes_Rating",
+          "type": "quantitative",
+          "axis": null
+        },
+        "x": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0,1000]
+          },
+          "title": ""
+        }
       }
     }]
   }],
-  "resolve": {
-    "legend": {
-      "color": "independent"
+  "config": {
+    "view": {
+      "stroke": "transparent"
     }
-  },
-    "config": {
-    "invalidValues": null
   }
-  
-};
+}
+;
  vegaEmbed('#vis3', Interactive);
  </script>
 	

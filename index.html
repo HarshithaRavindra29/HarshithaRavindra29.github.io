@@ -34,29 +34,6 @@
 	  }
 	};
       vegaEmbed('#vis', HappinessHist);
-	<p>Another viz</p>
-	var Dystopia_ResidualHist = {
-	  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
-	   "title": {
-	    "text": "Happiness Histogram",
-		"frame": "bounds"
-  },
-	  "data": {"url": "https://HarshithaRavindra29.github.io/Happiness_data_2017.csv"},
-	  "mark": "bar",
-	  "encoding": {
-		"x": {
-		  "bin": {"maxbins": 200, "step":0.5},
-		  "field": "Dystopia_Residual",
-		  "type": "quantitative"
-		  
-		},
-		"y": {
-		  "aggregate": "count",
-		  "type": "quantitative"
-		}
-	  }
-	};
-      vegaEmbed('#vis', Dystopia_ResidualHist);
     </script>
   </body>
 </html>

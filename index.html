@@ -2,7 +2,13 @@
 
 <!DOCTYPE html>
 <html>
-   <p>test</p>
+<h1>World Happiness Analysis</h1>
+   <p>This visualization is developed based on world happiness data. The World Happiness Report is a landmark survey of the state of global happiness. The first report was published in 2012, the second in 2013, the third in 2015, and the fourth in the 2016 Update. The World Happiness 2017, which ranks 155 countries by their happiness levels, was released at the United Nations at an event celebrating International Day of Happiness on March 20th. The report continues to gain global recognition as governments, organizations and civil society increasingly use happiness indicators to inform their policy-making decisions. Leading experts across fields – economics, psychology, survey analysis, national statistics, health, public policy and more – describe how measurements of well-being can be used effectively to assess the progress of nations. The reports review the state of happiness in the world today and show how the new science of happiness explains personal and national variations in happiness.  </p>
+   <p>The happiness scores and rankings use data from the Gallup World Poll. The scores are based on answers to the main life evaluation question asked in the poll. This question, known as the Cantril ladder, asks respondents to think of a ladder with the best possible life for them being a 10 and the worst possible life being a 0 and to rate their own current lives on that scale. The scores are from nationally representative samples for the years 2013-2016 and use the Gallup weights to make the estimates representative. The columns following the happiness score estimate the extent to which each of six factors – economic production, social support, life expectancy, freedom, absence of corruption, and generosity – contribute to making life evaluations higher in each country than they are in Dystopia, a hypothetical country that has values equal to the world’s lowest national averages for each of the six factors. They have no impact on the total score reported for each country, but they do explain why some countries rank higher than others.</p>
+   
+   <h4> Analysis </h4>
+	<p>The report has 2 component, one is the quantitative metrics generated through statisticsof the country, another is the survey data, where a a company named Gallup surveys 1000 people from eah questions that helps them quantify other metrics used in happiness corelike family, perceived corruption etc</p>
+	
    <head>
       <title>World Happiness Analysis</title>
       <script src="https://cdn.jsdelivr.net/npm/vega@3"></script>
@@ -10,7 +16,8 @@
       <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
    </head>
    <body>
-      <div id="vis"></div>
+	<h4>Distribution of happiness score</h4>
+	<div id="vis"></div>
       <script type="text/javascript">
          var HappinessHist = {
          "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
@@ -36,144 +43,8 @@
          vegaEmbed('#vis', HappinessHist);
       </script>
       
-      <p> gap - This text is only to see if the scroll bar is working! Its crazy why I amnot able to see the 
-         interactive visualization fully
-      jdgfhkfjv;d /n
-      sfhlkf;b /n
-      dkjhljgslnf /n
-      fyghjkhl /n
-      rtfyguhijok /n
-      sgh /n
-      dfgh
-      jdgfhkfjv;d /n
-      sfhlkf;b /n
-      dkjhljgslnf /n
-      fyghjkhl /n
-      rtfyguhijok /n
-      sgh /n
-      dfgh
-      </p>
-      
-      <div id="vis3"></div>
-      <script type="text/javascript">
-         var Interactive = {
-         "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
-         "description": "Drag a rectangular brush to show (first 20) selected points in a table.",
-         "data": {"url": "https://HarshithaRavindra29.github.io/Happiness_data_2017.csv"},
-         "transform": [{
-         "window": [{"op": "row_number", "as": "row_number"}]
-         }],
-         "hconcat": [{
-         "selection": {
-         "brush": {
-           "type": "interval"
-         }
-         },
-         "mark": "point",
-         "height": 300,
-         "width" :400,
-         "encoding": {
-         "x": {"field": "Happiness_Score", "type": "quantitative"},
-         "y": {"field": "Dystopia_Residual", "type": "quantitative"},
-         "color": {
-           "condition": {"selection": "brush", "field": "Economy_GDP_per_Capita_", "type": "quantitative"},
-           "value": "grey"
-         }
-         }
-         }, {
-         "transform": [
-         {"filter": {"selection": "brush"}},
-         {"window": [{"op": "rank", "as": "rank"}]},
-         {"filter": {"field": "rank", "lt": 30}}
-         ],
-         "hconcat": [{
-         "title": "GDP",
-         "mark": "text",
-         "encoding": {
-           "text": {"field": "Economy_GDP_per_Capita_", "type": "nominal"},
-           "y": {"field": "row_number", "type": "ordinal", "axis": null}
-         }
-         }, {
-         "title": "Country",
-         "mark": "text",
-         "encoding": {
-           "text": {"field": "Country", "type": "nominal"},
-           "y": {"field": "row_number", "type": "ordinal", "axis": null}
-         }
-         }, {
-         "title": "Family",
-         "mark": "text",
-         "encoding": {
-           "text": {"field": "Family", "type": "nominal"},
-           "y": {"field": "row_number", "type": "ordinal", "axis": null}
-         }
-         }]
-         }],
-         "resolve": {
-         "legend": {
-         "color": "independent"
-         }
-         },
-         "config": {
-         "invalidValues": null
-         }
-         
-         };
-         vegaEmbed('#vis3', Interactive);
-      </script>
-      
-      <p>ghcvhb,n</p>
-      <div id="vis2"></div>
-      <script type="text/javascript">
-         var DystopiaHist = {
-         "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
-         "title": {
-         "text": "Dystopia Histogram",
-         "frame": "bounds"
-         },
-         "data": {"url": "https://HarshithaRavindra29.github.io/Happiness_data_2017.csv"},
-         "mark": "bar",
-         "encoding": {
-         "x": {
-         "bin": {"maxbins": 200, "step":0.5},
-         "field": "Dystopia_Residual",
-         "type": "quantitative"
-         
-         },
-         "y": {
-         "aggregate": "count",
-         "type": "quantitative"
-         }
-         }
-         };
-         vegaEmbed('#vis2', DystopiaHist);
-      </script>
-      
-      <p>int2</p>
-      <div id="vis4"></div>
-      <script type="text/javascript">
-         var int2 = {
-         "data": {"url": "cars.json"},
-         "selection": {
-         "pts": {"type": "single"}
-         },
-         "mark": "rect",
-         "encoding": {
-         "y": {"field": "Origin", "type": "ordinal"},
-         "x": {"field": "Cylinders", "type": "ordinal"},
-         "color": {
-         "condition": {
-           "selection": "pts",
-           "aggregate": "count", "type": "quantitative"
-         },
-         "value": "grey"
-         }
-         }
-         };
-         vegaEmbed('#vis4', int2);
-      </script>
-      
-      <p>good one</p>
+      <h4> Analysis without survey data </h4>
+      <p>Let us see how the countries stand when the qualitative data - Survey data is removed and only economic factor is considered</p>
       <div id="vis5"></div>
       <script type="text/javascript">
          var bubble = {
@@ -217,6 +88,81 @@
 ;
          vegaEmbed('#vis5', bubble);
       </script>
+	  
+	  <h4> Another chart</h4>
+	  <p> Some more text</p>
+      
+	  <div id="vis3"></div>
+      <script type="text/javascript">
+         var Interactive = {
+         "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+         "description": "Drag a rectangular brush to show (first 10) selected points in a table.",
+         "data": {"url": "https://HarshithaRavindra29.github.io/Happiness_data_2017.csv"},
+         "transform": [{
+         "window": [{"op": "row_number", "as": "row_number"}]
+         }],
+         "hconcat": [{
+         "selection": {
+         "brush": {
+           "type": "interval"
+         }
+         },
+         "mark": "point",
+         "height": 300,
+         "width" :400,
+         "encoding": {
+         "x": {"field": "Happiness_Score", "type": "quantitative"},
+         "y": {"field": "Dystopia_Residual", "type": "quantitative"},
+         "color": {
+           "condition": {"selection": "brush", "field": "Economy_GDP_per_Capita_", "type": "quantitative"},
+           "value": "grey"
+         }
+         }
+         }, {
+         "transform": [
+         {"filter": {"selection": "brush"}},
+         {"window": [{"op": "rank", "as": "rank"}]},
+         {"filter": {"field": "rank", "lt": 10}}
+         ],
+         "hconcat": [ {
+         "title": "Country",
+         "mark": "text",
+         "encoding": {
+           "text": {"field": "Country", "type": "nominal"},
+           "y": {"field": "row_number", "type": "ordinal", "axis": null}
+
+         }
+         }
+		 , {
+         "title": "GDP",
+         "mark": "text",
+         "encoding": {
+           "text": {"field": "Economy_GDP_per_Capita_", "type": "nominal"},
+           "y": {"field": "row_number", "type": "ordinal", "axis": null}
+         }
+         },{
+         "title": "Family",
+         "mark": "text",
+         "encoding": {
+           "text": {"field": "Family", "type": "nominal"},
+           "y": {"field": "row_number", "type": "ordinal", "axis": null}
+         }
+         }]
+         }],
+         "resolve": {
+         "legend": {
+         "color": "independent"
+         }
+         },
+         "config": {
+         "invalidValues": null
+         }
+         
+         };
+         vegaEmbed('#vis3', Interactive);
+      </script>
+      
+
    </body>
 </html>
 

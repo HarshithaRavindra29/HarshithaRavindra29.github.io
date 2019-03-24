@@ -36,35 +36,7 @@
     </script>
 	  
 	 
-	  
-    <div id="vis2"></div>
-
-    <script type="text/javascript">
-      var DystopiaHist = {
-	  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
-	   "title": {
-	    "text": "Dystopia Histogram",
-		"frame": "bounds"
-  },
-	  "data": {"url": "https://HarshithaRavindra29.github.io/Happiness_data_2017.csv"},
-	  "mark": "bar",
-	  "encoding": {
-		"x": {
-		  "bin": {"maxbins": 200, "step":0.5},
-		  "field": "Dystopia_Residual",
-		  "type": "quantitative"
-		  
-		},
-		"y": {
-		  "aggregate": "count",
-		  "type": "quantitative"
-		}
-	  }
-	};
-      vegaEmbed('#vis2', DystopiaHist);
-    </script>
-
-	  
+	 	  
     <div id="vis3"></div>
 
     <script type="text/javascript">
@@ -127,6 +99,35 @@
 };
       vegaEmbed('#vis3', Interactive);
     </script>
-	 
+	
+	  
+    <div id="vis2"></div>
+
+    <script type="text/javascript">
+      var DystopiaHist = {
+	  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+	   "title": {
+	    "text": "Dystopia Histogram",
+		"frame": "bounds"
+  },
+	  "data": {"url": "https://HarshithaRavindra29.github.io/Happiness_data_2017.csv"},
+	  "mark": "bar",
+	  "encoding": {
+		"x": {
+		  "bin": {"maxbins": 200, "step":0.5},
+		  "field": "Dystopia_Residual",
+		  "type": "quantitative"
+		  
+		},
+		"y": {
+		  "aggregate": "count",
+		  "type": "quantitative"
+		}
+	  }
+	};
+      vegaEmbed('#vis2', DystopiaHist);
+    </script>
+
+	  
   </body>
 </html>

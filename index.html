@@ -3,12 +3,15 @@
 <!DOCTYPE html>
 <html>
 <h1>World Happiness Analysis</h1>
-<p> The below text content is extracted from https://www.kaggle.com/unsdsn/world-happiness</p>
-   <p>This visualization is developed based on world happiness data. The World Happiness Report is a landmark survey of the state of global happiness. The first report was published in 2012, the second in 2013, the third in 2015, and the fourth in the 2016 Update. The World Happiness 2017, which ranks 155 countries by their happiness levels, was released at the United Nations at an event celebrating International Day of Happiness on March 20th. The report continues to gain global recognition as governments, organizations and civil society increasingly use happiness indicators to inform their policy-making decisions. Leading experts across fields – economics, psychology, survey analysis, national statistics, health, public policy and more – describe how measurements of well-being can be used effectively to assess the progress of nations. The reports review the state of happiness in the world today and show how the new science of happiness explains personal and national variations in happiness.  </p>
-   <p>The happiness scores and rankings use data from the Gallup World Poll. The scores are based on answers to the main life evaluation question asked in the poll. This question, known as the Cantril ladder, asks respondents to think of a ladder with the best possible life for them being a 10 and the worst possible life being a 0 and to rate their own current lives on that scale. The scores are from nationally representative samples for the years 2013-2016 and use the Gallup weights to make the estimates representative. The columns following the happiness score estimate the extent to which each of six factors – economic production, social support, life expectancy, freedom, absence of corruption, and generosity – contribute to making life evaluations higher in each country than they are in Dystopia, a hypothetical country that has values equal to the world’s lowest national averages for each of the six factors. They have no impact on the total score reported for each country, but they do explain why some countries rank higher than others.</p>
+   <p>This visualization is developed based on world happiness data is a report which ranks 155 countries by their happiness levels which
+   was released at the United Nations at an event celebrating International Day of Happiness.</p>
    
    <h4> Analysis </h4>
-	<p>The report has 2 component, one is the quantitative metrics generated through statisticsof the country, another is the survey data, where a a company named Gallup surveys 1000 people from eah questions that helps them quantify other metrics used in happiness corelike family, perceived corruption etc</p>
+	<p>The report has 2 component, one is the quantitative metrics generated through statistics of the country, another is the survey data, 
+	where a company named 'Gallup' surveys 1000 people from eah questions that helps them 
+	quantify other metrics used in happiness score like family, perceived corruption etc</p>
+	<p> The point of contention could be, for a large nation with populations in millions and even billions, how can a sample size of 1000 and their opinion 
+		on certain social issues indicate the sentiment of the whole nation</p>
 	
    <head>
       <title>World Happiness Analysis</title>
@@ -38,14 +41,18 @@
          "y": {
          "aggregate": "count",
          "type": "quantitative"
-         }
+         },
+		"color": {
+		"field": "Continent", "type": "nominal",
+		
+		"scale": {"scheme": "viridis"}}
          }
          };
          vegaEmbed('#vis', HappinessHist);
       </script>
       
       <h4> Analysis without survey data </h4>
-      <p>Let us see how the countries stand when the qualitative data - Survey data is removed and only economic factor is considered</p>
+      <p>Let us see where the countries stand when the qualitative data (Survey data) is removed and only quantitative statistics is considered</p>
       <div id="vis5"></div>
       <script type="text/javascript">
          var bubble = {
@@ -76,7 +83,8 @@
       "axis": {"labelAngle": 0}
     },
     "y": {"field": "Health_Life_Expectancy_", "type": "quantitative", "axis": {"title": "Health_Life_Expectancy_"}},
-    "tooltip": {"field": "Country", "type": "nominal"},
+    "tooltip": [{"field": "Country", "type": "nominal"},
+	{"field": "Continent", "type": "nominal"}],
     "size": {
       "field": "Dystopia_Residual",
       "type": "quantitative",
@@ -89,8 +97,11 @@
 ;
          vegaEmbed('#vis5', bubble);
       </script>
-	  
-	  <h4> Another chart</h4>
+	  <p> When survey data is removed, we notice that some countries with higher health, higher GDP, better dystopia value
+	  are still ranked lower than the ones below purely based on survey data.</p>
+
+
+	  <h4> </h4>
 	  <p> Some more text</p>
       
 	  <div id="vis3"></div>
@@ -108,14 +119,17 @@
            "type": "interval"
          }
          },
-         "mark": "point",
+         "mark": {"type":"point","shape":"diamond","filled":"true","size":"100"},
          "height": 300,
          "width" :400,
          "encoding": {
          "x": {"field": "Happiness_Score", "type": "quantitative"},
          "y": {"field": "Dystopia_Residual", "type": "quantitative"},
          "color": {
-           "condition": {"selection": "brush", "field": "Economy_GDP_per_Capita_", "type": "quantitative"},
+           "condition": {"selection": "brush", 
+		   "field": "Population (M)", 
+		   "type": "quantitative",
+		   "scale": {"scheme": "viridis"}},
            "value": "grey"
          }
          }
@@ -125,27 +139,27 @@
          {"window": [{"op": "rank", "as": "rank"}]},
          {"filter": {"field": "rank", "lt": 10}}
          ],
-         "hconcat": [ {
+         "hconcat": [
+		 {
+         "title": "Continent",
+         "mark": "text",
+         "encoding": {
+           "text": {"field": "Continent", "type": "nominal"},
+           "y": {"field": "row_number", "type": "ordinal", "axis": null}
+         }
+         }, {
          "title": "Country",
          "mark": "text",
          "encoding": {
            "text": {"field": "Country", "type": "nominal"},
            "y": {"field": "row_number", "type": "ordinal", "axis": null}
-
          }
          }
 		 , {
-         "title": "GDP",
+         "title": "Happiness Rank",
          "mark": "text",
          "encoding": {
-           "text": {"field": "Economy_GDP_per_Capita_", "type": "nominal"},
-           "y": {"field": "row_number", "type": "ordinal", "axis": null}
-         }
-         },{
-         "title": "Family",
-         "mark": "text",
-         "encoding": {
-           "text": {"field": "Family", "type": "nominal"},
+           "text": {"field": "Happiness_Rank", "type": "nominal"},
            "y": {"field": "row_number", "type": "ordinal", "axis": null}
          }
          }]

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Twitter- NaMo vs RaGa Vs Didi</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+</head>
+
+<body>
+
+    <center>
+        <h1>Twitter Data Analysis - During Indian Election 2019</h1>
+    </center>
+    <p>Indian Politicians have become very active on social media in recent years, and twitter is one such main common interaction platforms for these politicians</p>
+    <p>Mr. Narendra Modi (NaMo), the Prime Minister of India is the leader in such interaction and has the highest number of followers in India! Other leaders like Mr. Rahul Gandhi (RaGa) and Ms. Mamata Bannerji are also very active in politics. The three
+        leaders considered here are the top leaders in three major parties - Bharatiya Janata Party (BJP), Indian National Congress (INC) and All India Trinamool Congress (TMC). </p>
+    <p>The Below analysis is performed by scrapping about the last 3000 tweets from these leaders from the past few years until April 14th 2019</p>
+
+    <center>
+        <h3> Common and unique words used by the top politicians in India </h3>
+    </center>
+    <p>The below visualization is my attempt to recreate a Tableau - visualization created by
+        <a href="https://public.tableau.com/en-us/s/gallery/game-thrones-words">Adam E McCann</a>
+    </p>
+    <p>The color indicates the uniquess of the wors used by each leader, the size of the bubble indicates the number of times the word that was used, hovering over the bubbles displays the words used by each
+    </p>
+    <center>
+        <img src="RaGa.jpg" alt="Rahul Gandhi" width="80" height="80">
+    </center>
+
+    <center>
+        <div id="vis3"></div>
+    </center>
+    <div id="container">
+        <div style="display: flex; justify-content: space-around">
+            <div><img src="Didi.jpg" alt="Mamata Bannerji" width="80" height="80"></div>
+            <div><img src="NaMo.jpg" alt="Mamata Bannerji" width="80" height="80"></div>
+        </div>
+
+    </div>
+
+
+
+    <!-- This is from the example embedded vega-lite demo -->
+    <script type="text/javascript">
+        var Main_wordcloud = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+            "description": "Tweet",
+            "data": {
+                "url": "./word_triangle.csv",
+                "format": {
+                    "type": "csv"
+                }
+            },
+            "width": 600,
+            "height": 450,
+            "config": {
+                "background": "white"
+            },
+            "layer": [{
+                "transform": [{
+                    "filter": {
+                        "field": "numtotal",
+                        "gt": 70
+                    }
+                }],
+
+                "mark": {
+                    "type": "circle",
+                    "opacity": 0.4
+                },
+                "encoding": {
+                    "x": {
+                        "field": "X",
+                        "type": "quantitative",
+                        "axis": {
+                            "title": null,
+                            "grid": false,
+                            "labels": false,
+                            "ticks": false
+                        }
+                    },
+                    "y": {
+
+                        "field": "Y",
+                        "type": "quantitative",
+                        "axis": {
+                            "title": null,
+                            "grid": false,
+                            "labels": false,
+                            "ticks": false
+                        }
+                    },
+                    "color": {
+                        "field": "color_coded",
+                        "type": "nominal",
+                        "legend": null
+                    },
+                    "size": {
+                        "field": "size",
+                        "type": "quantitative",
+                        "scale": {
+                            "range": [0, 3000]
+
+                        },
+                        "legend": null
+                            /*{
+                                "title": "Total tweets",
+                                "field": "numtotal"
+                            },*/
+                    },
+                    "tooltip": [{
+                        "field": "word",
+                        "type": "nominal"
+                    }, {
+                        "field": "numtotal",
+                        "type": "quantitative",
+                        "title": "Total"
+                    }, {
+                        "field": "numNaMo",
+                        "type": "quantitative",
+                        "title": "NaMo"
+                    }, {
+                        "field": "numRaGa",
+                        "type": "quantitative",
+                        "title": "RaGa"
+                    }, {
+                        "field": "numDidi",
+                        "type": "quantitative",
+                        "title": "Didi"
+                    }],
+                }
+            }, {
+                "transform": [{
+                    "filter": {
+                        "field": "numtotal",
+                        "gt": 150
+                    }
+                }],
+                "mark": "text",
+                "encoding": {
+                    "x": {
+                        "field": "X",
+                        "type": "quantitative"
+                    },
+                    "y": {
+
+                        "field": "Y",
+                        "type": "quantitative"
+                    },
+                    "text": {
+                        "field": "word",
+                        "type": "nominal",
+                        // bold , limit not working
+                        "fontWeight": 700,
+                        "limit": 1
+                    },
+                    "color": {
+                        "field": "Max_used_by",
+                        "type": "nominal",
+                        "legend": null
+                    }
+                }
+            }]
+        };
+        vegaEmbed('#vis3', Main_wordcloud);
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
+
+
+    <center>
+        <h3>Tweets in last nine months</h3>
+    </center>
+    <center>
+        <div id="vis"></div>
+    </center>
+
+
+    <script type="text/javascript">
+        var tweet_month_count = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+            "description": "Tweet",
+            "data": {
+                "url": "./To_viz_tweets.csv",
+                "format": {
+                    "type": "csv"
+                }
+            },
+            "width": 300,
+            "height": 150,
+            "mark": "line",
+            "transform": [{
+                "filter": {
+                    "field": "date_time",
+                    "range": [{
+                        "year": 2018,
+                        "month": "Aug"
+                    }, {
+                        "year": 2019,
+                        "month": "May"
+                    }]
+                }
+            }],
+            "encoding": {
+                "x": {
+                    "timeUnit": "yearmonth",
+                    "field": "date_time",
+                    "type": "temporal"
+
+                },
+                "y": {
+                    "aggregate": "count",
+                    "field": "Tweets",
+                    "type": "nominal",
+                    //  "stack": "center"
+                },
+                "color": {
+                    "field": "Name",
+                    "type": "nominal"
+                }
+            }
+        };
+        vegaEmbed('#vis', tweet_month_count);
+    </script>
+
+    <center>
+        <h3> Other Statistics </h3>
+    </center>
+
+    <center>
+        <div id="vis2"></div>
+    </center>
+
+    <!-- This is from the example embedded vega-lite demo -->
+    <script type="text/javascript">
+        var various_bars = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+            "description": "Tweet",
+            "data": {
+                "url": "./To_viz_tweets.csv",
+                "format": {
+                    "type": "csv"
+                }
+            },
+            "transform": [{
+                "filter": {
+                    "field": "date_time",
+                    "range": [{
+                        "year": 2018,
+                        "month": "Aug"
+                    }, {
+                        "year": 2019,
+                        "month": "May"
+                    }]
+                }
+            }],
+            "hconcat": [{
+                "mark": "bar",
+                "encoding": {
+                    "x": {
+                        "field": "Name",
+                        "type": "nominal"
+                    },
+                    "y": {
+                        "aggregate": "count",
+                        "field": "Tweets",
+                        "type": "quantitative",
+                        "axis": {
+                            "title": "Number of tweets"
+                        }
+                    },
+                    "color": {
+                        "field": "Name",
+                        "type": "nominal"
+                    }
+                }
+            }, {
+                "mark": "bar",
+                "encoding": {
+                    "x": {
+                        "field": "Name",
+                        "type": "nominal"
+                    },
+                    "y": {
+                        "aggregate": "sum",
+                        "field": "fav_count",
+                        "type": "quantitative",
+                        "axis": {
+                            "title": "Number of tweets Favourited"
+                        }
+                    },
+                    "color": {
+                        "field": "Name",
+                        "type": "nominal"
+                    }
+                }
+            }, {
+                "transform": [{
+                    "filter": {
+                        "field": "has link",
+                        "equal": "Yes"
+                    }
+                }],
+                "mark": "bar",
+                "encoding": {
+                    "x": {
+                        "field": "Name",
+                        "type": "nominal"
+                    },
+                    "y": {
+                        "aggregate": "count",
+                        "field": "has link",
+                        "type": "quantitative",
+                        "axis": {
+                            "title": "Number of Links"
+                        }
+                    },
+                    "color": {
+                        "field": "Name",
+                        "type": "nominal"
+                    }
+                }
+            }, {
+                "transform": [{
+                    "calculate": "datum.lang == 'en' ? 'English' : 'Other'",
+                    "as": "Language"
+                }],
+                "mark": "bar",
+                "encoding": {
+
+
+                    "x": {
+                        "field": "Language",
+                        "type": "nominal"
+                    },
+                    "y": {
+                        "aggregate": "count",
+                        "field": "lang",
+                        "type": "quantitative"
+                    },
+                    "color": {
+                        "field": "Name",
+                        "type": "nominal"
+                    }
+                }
+            }]
+        };
+        vegaEmbed('#vis2', various_bars);
+    </script>
+
+
+
+</body>
+<!-- Resources
+https://public.tableau.com/en-us/s/gallery/game-thrones-words -->
+<!-- https://stackoverflow.com/questions/7693224/how-do-i-right-align-div-elements -->
+
+</html>

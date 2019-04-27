@@ -1,4 +1,4 @@
-var Main_wordcloud = {
+var Main_wordcloud_bl = {
     "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
     "description": "Tweet",
     "data": {
@@ -10,16 +10,15 @@ var Main_wordcloud = {
     "width": 600,
     "height": 400,
     "config": {
-        "background": "white"
+        "background": "black"
     },
     "layer": [{
         "transform": [{
             "filter": {
                 "field": "numtotal",
-                "gt": 70
+                "gt": 40
             }
         }],
-
         "mark": {
             "type": "circle",
             "opacity": 0.4
@@ -88,16 +87,19 @@ var Main_wordcloud = {
     }, {
         "transform": [{
             "filter": {
-                "field": "numtotal",
-                "gt": 150
+                "field": "word",
+                "oneOf": ["modi", "rahul", "nation", "india", "death", "people", "govt", "thank",
+                    "congress", "bjp", "rafale", "deal", "wish", "http", "country", "family", "team", "effort",
+                    "sector", "towards", "development", "condolences", "women", "children", "chowkidar"
+                ]
             }
         }],
         "mark": {
             "type": "text",
             "align": "center",
             "baseline": "bottom",
-            // "dx": 10,
-            "dy": 3
+            //"dx": 10,
+            //"dy": 3
         },
         "encoding": {
             "x": {
@@ -116,12 +118,13 @@ var Main_wordcloud = {
                 "fontWeight": 700,
                 "limit": 1
             },
-            "color": {
+            "color": { "value": "white" }
+            /* {
                 "field": "Max_used_by",
                 "type": "nominal",
                 "legend": null
-            }
+            } */
         }
     }]
 }
-vegaEmbed('#vis3', Main_wordcloud);
+vegaEmbed('#vis4', Main_wordcloud_bl);

@@ -7,8 +7,8 @@ var tweet_month_count = {
             "type": "csv"
         }
     },
-    "width": 300,
-    "height": 150,
+    "width": 700,
+    "height": 450,
     "mark": "line",
     "transform": [{
         "filter": {

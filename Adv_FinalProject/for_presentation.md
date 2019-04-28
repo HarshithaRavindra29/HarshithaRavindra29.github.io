@@ -33,7 +33,7 @@ The following visualization is my attempt to recreate a Tableau - visualization 
 
 ---
 
-## Messages and Language
+### Messages and Language
 <object type="image/svg+xml" data="Link_Lang.svg">
   Your browser does not support SVG
 </object>
@@ -59,9 +59,6 @@ The following visualization is my attempt to recreate a Tableau - visualization 
         <div><img src="NaMo.jpg" alt="Mamata Bannerji" width="80" height="80"></div>
     </div>
 </div>
-
-
----
 
 ---
 

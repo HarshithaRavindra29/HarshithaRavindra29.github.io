@@ -37,6 +37,7 @@ The following visualization is my attempt to recreate a Tableau - visualization 
 <object type="image/svg+xml" data="Link_Lang.svg">
   Your browser does not support SVG
 </object>
+
 ---
 
 <!-- .slide: data-background-color="#999999" -->

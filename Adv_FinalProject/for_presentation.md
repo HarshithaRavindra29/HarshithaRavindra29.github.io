@@ -33,10 +33,10 @@ The following visualization is my attempt to recreate a Tableau - visualization 
 
 ---
 
-## Other Statistics
-<div id="vis2"></div>
-
-
+## Messages and Language
+<object type="image/svg+xml" data="Link_Lang.svg">
+  Your browser does not support SVG
+</object>
 ---
 
 <!-- .slide: data-background-color="#999999" -->
@@ -62,3 +62,11 @@ The following visualization is my attempt to recreate a Tableau - visualization 
 
 
 ---
+
+---
+
+## Other Statistics
+<div id="vis2"></div>
+
+---
+<!-- http://sankeymatic.com/build/ -->

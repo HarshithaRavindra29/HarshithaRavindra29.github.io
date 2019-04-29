@@ -1,4 +1,4 @@
-# Twitter Data Analysis - During Indian Election 2019
+# Twitter Data Analysis 
 
 *NaMo vs RaGa Vs Didi*
 

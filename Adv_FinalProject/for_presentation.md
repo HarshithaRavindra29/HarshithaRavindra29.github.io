@@ -1,6 +1,6 @@
 # Twitter Data Analysis - During Indian Election 2019
 
-### NaMo vs RaGa Vs Didi
+*NaMo vs RaGa Vs Didi*
 
 Harshitha Ravindra
 ---

@@ -1,10 +1,11 @@
 # Twitter Data Analysis - During Indian Election 2019
 
-NaMo vs RaGa Vs Didi
+### NaMo vs RaGa Vs Didi
 
+Harshitha Ravindra
 ---
 
-The last 3000 tweets - from the past few years until April 14th 2019
+The last 3000 tweets - from the past few years to April 14th 2019
 
 <div id="vis"></div> 
 
